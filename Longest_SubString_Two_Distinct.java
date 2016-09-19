@@ -17,29 +17,30 @@ and remove 1 character from our map. Since the range of characters is constraine
 we should be able to find the left most index in constant time.
 */
 public class Solution {
-    public int lengthOfLongestSubstringTwoDistinct(String s) {
-        if(s.length() < 1) return 0;
-        HashMap<Character,Integer> index = new HashMap<Character,Integer>();
-        int lo = 0;
-        int hi = 0;
-        int maxLength = 0;
-        while(hi < s.length()) {
-            if(index.size() <= 2) {
-                char c = s.charAt(hi);
-                index.put(c, hi);
-                hi++;
-            }
-            if(index.size() > 2) {
-                int leftMost = s.length();
-                for(int i : index.values()) {
-                    leftMost = Math.min(leftMost,i);
-                }
-                char c = s.charAt(leftMost);
-                index.remove(c);
-                lo = leftMost+1;
-            }
-            maxLength = Math.max(maxLength, hi-lo);
-        }
-        return maxLength;
-    }
+  public int lengthOfLongestSubstringTwoDistinct(String s) {
+      //The main idea is to save the last occurrence of each character in the map, whenever the size of the HashMap
+      //exceeds 2, remove the leftmost character in the map, and update the start to be leftmost character index + 1
+      if (s == null || s.length() == 0){
+          return 0;
+      }
+      int start = 0, end = 0, maxLen = 0;
+      HashMap<Character, Integer> index = new HashMap<Character, Integer>();
+      while (end < s.length()){
+          if (index.size() <= 2){
+              index.put(s.charAt(end), end);
+              end++;
+          }
+          if (index.size() > 2){
+              int leftMost = s.length();
+              for (int i : index.values()){
+                  leftMost = Math.min(leftMost, i);
+              }
+              char c = s.charAt(leftMost);
+              index.remove(c);
+              start = leftMost + 1;
+          }
+          maxLen = Math.max(maxLen, end - start);
+      }
+      return maxLen;
+  }
 }
