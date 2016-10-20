@@ -4,3 +4,7 @@
 87. Scramble String  
 
 99. Recover Binary Search Tree  
+
+85. Maximal Rectangle
+
+72. Edit Distance
