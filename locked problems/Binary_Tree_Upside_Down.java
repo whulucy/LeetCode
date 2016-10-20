@@ -18,7 +18,7 @@ return the root of the binary tree [4,5,2,#,#,3,1].
             3   1
 */
 
-//思路，把左右的node, 都放到stack 里面， 然后依次pop stack 里面的node，
+//思路，把左子树的node, 都放到stack 里面， 然后依次pop stack 里面的node，
 // 第一个node 是新的root, 2变成4的右孩子， 2的右孩子变成4的左孩子，需要把2的左右设为null
 
 public class Solution {
